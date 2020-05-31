@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RoR2FSModding", "RoR2FSModding\RoR2FSModding.fsproj", "{4ED1C0EF-AA74-4404-9E56-7C53A54923B9}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Embedder", "Embedder\Embedder.fsproj", "{CB38525B-27B9-4D8C-96FA-2BDF75C03981}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ModTemplate", "ModTemplate\ModTemplate.fsproj", "{5B15F172-E6AF-4EC6-A1D1-5CFF7E1B38C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4ED1C0EF-AA74-4404-9E56-7C53A54923B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ED1C0EF-AA74-4404-9E56-7C53A54923B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ED1C0EF-AA74-4404-9E56-7C53A54923B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ED1C0EF-AA74-4404-9E56-7C53A54923B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB38525B-27B9-4D8C-96FA-2BDF75C03981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB38525B-27B9-4D8C-96FA-2BDF75C03981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB38525B-27B9-4D8C-96FA-2BDF75C03981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB38525B-27B9-4D8C-96FA-2BDF75C03981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B15F172-E6AF-4EC6-A1D1-5CFF7E1B38C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B15F172-E6AF-4EC6-A1D1-5CFF7E1B38C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B15F172-E6AF-4EC6-A1D1-5CFF7E1B38C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B15F172-E6AF-4EC6-A1D1-5CFF7E1B38C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
