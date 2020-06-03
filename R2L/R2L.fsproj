@@ -16,7 +16,6 @@
   <ItemGroup>
     <Compile Include="..\__Standalone\Operators.fs" Link="Operators.fs" />
     <Compile Include="..\__Standalone\Mappings.fs" Link="Mappings.fs" />
-    <Compile Include="Reflection\Internal\GenericCache.fs" />
     <Compile Include="Reflection\Internal\Helpers.fs" />
     <Compile Include="Reflection\Operator.fs" />
   </ItemGroup>
@@ -307,7 +306,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.7.0" />
+    <PackageReference Update="FSharp.Core" Version="4.7.2" />
   </ItemGroup>
 
 </Project>

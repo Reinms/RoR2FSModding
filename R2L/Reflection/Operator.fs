@@ -6,12 +6,13 @@ open R2L.Reflection.Internal
 
 module public Operator =
     let inline (?) (this: 'TSource) (name: String) : 'TResult =
-        Helpers.GetCachedLookup this name
+        Helpers.GetCachedLookup<'TSource,'TResult> this name
 
 
 
     let thing = 47
-    let thing2: String = thing?ToString()
+    let thing2: String = thing?ToString( 42, "hello", new obj() )
+
 
     //let (?) () : Unit =
     //    ()
