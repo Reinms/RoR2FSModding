@@ -2,24 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>1.0.0.8</AssemblyVersion>
-    <FileVersion>1.0.0.8</FileVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OtherFlags>--standalone</OtherFlags>
-    <Optimize>true</Optimize>
-    <Tailcalls>true</Tailcalls>
+    <AssemblyVersion>1.0.0.20</AssemblyVersion>
+    <FileVersion>1.0.0.20</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+    <Tailcalls>true</Tailcalls>
+    <NoWarn>42;</NoWarn>
     <OtherFlags>--standalone</OtherFlags>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\__Standalone\Operators.fs" Link="Operators.fs" />
     <Compile Include="..\__Standalone\Mappings.fs" Link="Mappings.fs" />
-    <Compile Include="Plugin.fs" />
-    <Compile Include="Manifest.fs" />
+    <Compile Include="Reflection\Internal\GenericCache.fs" />
+    <Compile Include="Reflection\Internal\Helpers.fs" />
+    <Compile Include="Reflection\Operator.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoMod" Version="19.11.5.1" />
+    <PackageReference Include="MonoMod.RuntimeDetour" Version="19.11.5.1" />
+    <PackageReference Include="MonoMod.Utils" Version="19.11.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,9 +87,6 @@
     </Reference>
     <Reference Include="ProBuilderMeshOps">
       <HintPath>..\__Libs\Unity\ProBuilderMeshOps.dll</HintPath>
-    </Reference>
-    <Reference Include="ReinCore">
-      <HintPath>..\..\ReinRoR2Modding\libs\Rein\ReinCore.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>..\__Libs\Unity\Rewired_Core.dll</HintPath>
@@ -302,6 +304,10 @@
     <Reference Include="Wwise">
       <HintPath>..\__Libs\Unity\Wwise.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.0" />
   </ItemGroup>
 
 </Project>
