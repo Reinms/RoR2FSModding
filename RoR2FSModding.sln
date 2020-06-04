@@ -13,6 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Standalone", "__Standalon
 		__Standalone\Operators.fs = __Standalone\Operators.fs
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "R2L", "R2L", "{8B9F1043-4D4B-4FEB-8BBB-ACAE19FD3B04}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "R2L_Tests", "R2L_Tests\R2L_Tests.fsproj", "{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11F9F3DC-C3EE-4F9B-90BD-138502977EFC}"
+	ProjectSection(SolutionItems) = preProject
+		DisabledCode.txt = DisabledCode.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +36,17 @@ Global
 		{8B21A418-E160-4670-976B-B2F27977F98F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B21A418-E160-4670-976B-B2F27977F98F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B21A418-E160-4670-976B-B2F27977F98F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B21A418-E160-4670-976B-B2F27977F98F} = {8B9F1043-4D4B-4FEB-8BBB-ACAE19FD3B04}
+		{0CDF4888-9148-4FD2-A7CB-DA2825F1C8FB} = {8B9F1043-4D4B-4FEB-8BBB-ACAE19FD3B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A8B3DDF-3AFC-479A-A89D-C86A72EFA4BC}

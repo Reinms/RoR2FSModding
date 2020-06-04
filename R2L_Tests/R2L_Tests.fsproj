@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <AssemblyVersion>1.0.0.25</AssemblyVersion>
+    <FileVersion>1.0.0.25</FileVersion>
+    <ReferencePath></ReferencePath>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <RootNamespace>R2L_Tests</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OtherFlags></OtherFlags>
+  </PropertyGroup>
+  
+  
+  <ItemGroup>
+    <PackageReference Include="MonoMod" Version="19.11.5.1" />
+    <PackageReference Include="MonoMod.RuntimeDetour" Version="19.11.5.1" />
+    <PackageReference Include="MonoMod.Utils" Version="19.11.5.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Reflection\Internal\Test_Helpers.fs" />
+    <Compile Include="Reflection\Test_Operator.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.7.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="R2L">
+      <HintPath>..\__Builds\R2L\R2L.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
