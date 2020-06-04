@@ -4,3 +4,6 @@ namespace rec Rein.FSharp
 module CustomOperators =
     let inline ( != ) x y =
         x <> y
+
+    let inline ( == ) x y =
+        x = y
