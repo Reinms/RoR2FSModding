@@ -1,6 +1,7 @@
 ﻿namespace R2L.Reflection
 
 open System
+open System.Diagnostics
 
 open R2L.Reflection.Internal
 
@@ -11,15 +12,24 @@ module public Operator =
 
     // The reflective/dynamic Get operator (also used for calls)
     let inline public (?) (this: 'TObject) (name: String) : ( 'TSignature ) =
-        // Temporary 
+        // Temporary logging
         printfn "Object: %s \nSignature: %s" typeof<'TObject>.FullName typeof<'TSignature>.FullName
-        SignatureCache<'TObject,'TSignature>.GetCached( this, name )
+        let timer = Stopwatch.StartNew()
+        let res = SignatureCache<'TObject,'TSignature>.GetCached( this, name )
+        timer.Stop()
+        printfn "Access time: %i" timer.ElapsedTicks
+        res
 
 
     // The reflective/dynamic Set operator (may be used for hooks in the future)
     let inline public (?<-) (this: 'TObject) (name: String) (value: 'TSignature ) : Unit =
+        // Temporary logging
         printfn "Object: %s \nSignature: %s" typeof<'TObject>.FullName typeof<'TSignature>.FullName
-        SignatureCache<'TObject,'TSignature>.SetCached( this, name, value )
+        let timer = Stopwatch.StartNew()
+        let res = SignatureCache<'TObject,'TSignature>.SetCached( this, name, value )
+        timer.Stop()
+        printfn "Access time: %i" timer.ElapsedTicks
+        res
 
     let thing = 47
     // Wrote out intended use syntax.

@@ -25,9 +25,9 @@
   <ItemGroup>
     <Compile Include="..\__Standalone\Operators.fs" Link="General\Operators.fs" />
     <Compile Include="..\__Standalone\Mappings.fs" Link="General\Mappings.fs" />
+    <Compile Include="Reflection\Internal\Helpers.fs" />
     <Compile Include="Reflection\Internal\Generator.fs" />
     <Compile Include="Reflection\Internal\SigCache.fs" />
-    <Compile Include="Reflection\Internal\Helpers.fs" />
     <Compile Include="Reflection\Operator.fsi" />
     <Compile Include="Reflection\Operator.fs" />
   </ItemGroup>
