@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>1.0.0.56</AssemblyVersion>
-    <FileVersion>1.0.0.56</FileVersion>
+    <AssemblyVersion>1.0.0.157</AssemblyVersion>
+    <FileVersion>1.0.0.157</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -25,10 +25,10 @@
   <ItemGroup>
     <Compile Include="..\__Standalone\Operators.fs" Link="General\Operators.fs" />
     <Compile Include="..\__Standalone\Mappings.fs" Link="General\Mappings.fs" />
+    <Compile Include="Reflection\Internal\DelegateCreator.fs" />
     <Compile Include="Reflection\Internal\Helpers.fs" />
     <Compile Include="Reflection\Internal\Generator.fs" />
     <Compile Include="Reflection\Internal\SigCache.fs" />
-    <Compile Include="Reflection\Operator.fsi" />
     <Compile Include="Reflection\Operator.fs" />
   </ItemGroup>
 
@@ -402,7 +402,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="info.fs" />
+    <Compile Include="Info.fs" />
     <Folder Include="General\" />
   </ItemGroup>
 

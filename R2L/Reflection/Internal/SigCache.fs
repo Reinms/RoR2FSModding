@@ -11,9 +11,7 @@ type BFlags = System.Reflection.BindingFlags
 
 
 // Delegate type to store the function generation in. Needed because more generics are extracted from the inputs
-type internal FunctionGeneratorDelegate<'TObject,'TResultSignature> = delegate of (Type * String * Boolean) -> ('TObject -> 'TResultSignature)
-
-
+type internal FunctionGeneratorDelegate<'TDomain,'TRange,'TObject,'TResultSignature> = delegate of (Type * String * Boolean) -> ('TObject -> 'TResultSignature)
 
 // TObject is the thing that the call was performed on
 // TResultSignature represents the context inferred type of the return.
@@ -22,7 +20,7 @@ type internal FunctionGeneratorDelegate<'TObject,'TResultSignature> = delegate o
 [<Sealed>]
 type public SignatureCache<'TObject,'TResultSignature>() =
     class
-
+        
         // Checks if the inferred result type is a function and grabs the domain and range if it is
         static let isFunction = FSharpType.IsFunction( typeof<'TResultSignature> )
         static let domainType, rangeType =
@@ -50,20 +48,32 @@ type public SignatureCache<'TObject,'TResultSignature>() =
         static let unknownTypeSetDict = Dictionary<Type,Dictionary<String,('TObject -> 'TResultSignature -> Unit)>>()
 
 
-        // This is needed in order to give more data in generics to the generator
-        // That is important because without this data, it is impossible to output the generated delegate properly and quickly
-        static let functionGen: FunctionGeneratorDelegate<'TObject,'TResultSignature> =
+        static let genMethod =
             if isFunction then
-                let modType = Generator.moduleType
-                let targetMethod = modType.GetMethod( "GenerateFunction", BFlags.NonPublic ||| BFlags.Static )
-                targetMethod.MakeGenericMethod( [| domainType; rangeType; typeof<'TObject>; typeof<'TResultSignature>; |])
-                |> Extensions.CreateDelegate<FunctionGeneratorDelegate<'TObject,'TResultSignature>>
-                |> Extensions.CastDelegate<FunctionGeneratorDelegate<'TObject,'TResultSignature>>
+                Generator.moduleType.GetMethod( "GenerateFunction", BFlags.NonPublic ||| BFlags.Static ).GetGenericMethodDefinition().MakeGenericMethod( domainType, rangeType, typeof<'TObject>, typeof<'TResultSignature> )
             else
                 null
 
+        // This is needed in order to give more data in generics to the generator
+        // That is important because without this data, it is impossible to output the generated delegate properly and quickly
+        //static let functionGen: FunctionGeneratorDelegate<_,_,'TObject,'TResultSignature> =
+        //    if isFunction then
+        //        let delType = typedefof<FunctionGeneratorDelegate<_,_,_,_>>.MakeGenericType( domainType, rangeType, typeof<'TObject>, typeof<'TResultSignature> )
+        //        let modType = Generator.moduleType
+        //        let targetMethod = modType.GetMethod( "GenerateFunction", BFlags.NonPublic ||| BFlags.Static )
+        //        let genMethod = targetMethod.GetGenericMethodDefinition().MakeGenericMethod( domainType, rangeType, typeof<'TObject>, typeof<'TResultSignature> )
+        //        //let del = genMethod.Ld
+        //        Delegate()
+        //        |> Extensions.CastDelegate<FunctionGeneratorDelegate<_,_,'TObject,'TResultSignature>>
+        //    else
+        //        null
+
+
+        // Fighting the CLR's delegate creation safety checks is infuriating
+        // So instead, just eat the 2 order of magnitude performance hit and use methodinfo.Invoke
+        // Only hits on first call, so it doesn't actively defeat the purpose of this entire codebase anyway
         static let GenerateFunction (targetType: Type) (name: String) (isStatic: Boolean) : ('TObject -> 'TResultSignature)  =
-            functionGen.Invoke( targetType, name, isStatic )
+            genMethod.Invoke( null, [| targetType; name; isStatic; |] ) :?> ('TObject -> 'TResultSignature)
 
 
         static member public GetCached( target: 'TObject, name: String ) : ( 'TResultSignature ) =
@@ -154,7 +164,7 @@ type public SignatureCache<'TObject,'TResultSignature>() =
 
 
 
-        static member internal SetCached( target: 'TObject, name: String, valueToSet: 'TResultSignature ) : Unit =
+        static member public SetCached( target: 'TObject, name: String, valueToSet: 'TResultSignature ) : Unit =
             if isDynamic then
 
                 // Impmement dynamic set
